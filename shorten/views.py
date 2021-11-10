@@ -86,8 +86,9 @@ def get_full_url(request, path):
         try:
 
             full_url = Url.objects.get(shortened=path)
-            print(full_url)
-            return JsonResponse({"url": full_url.redirect})
+            print(f'this is {full_url}')
+            #return JsonResponse({"url": full_url.redirect})
+            return redirect (full_url.redirect)
         except Url.DoesNotExist:
             return JsonResponse({"status": "not found"})
 

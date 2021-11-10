@@ -35,24 +35,15 @@ function getShort(e) {
         console.log(newURL.textContent)
         document.getElementById('mainBody').appendChild(newURL)
 
+        let newButton = document.createElement("a")
+        console.log(newURL.textContent)
+        newButton.textContent = 'Visit your link'
+        newButton.href = newURL.textContent
+        newButton.setAttribute('class', 'myNewButton')
+        console.log(newButton.textContent)
+        document.getElementById('mainBody').appendChild(document.createElement("br"))
+        document.getElementById('mainBody').appendChild(newButton)
 
-        fetch(newURL.textContent)
-            .then(r => r.json())
-            .then(r => r.url)
-            .then(r => linkButton(r))
-
-
-
-        function linkButton(m) {
-            let newButton = document.createElement("a")
-            console.log(m)
-            newButton.textContent = 'Visit your link'
-            newButton.href = m
-            newButton.setAttribute('class', 'myNewButton')
-            console.log(newButton.textContent)
-            document.getElementById('mainBody').appendChild(document.createElement("br"))
-            document.getElementById('mainBody').appendChild(newButton)
-        }
 
 
 
