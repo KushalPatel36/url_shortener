@@ -41,4 +41,16 @@ def short(request):
 
         return JsonResponse(response)
 
-    return JsonResponse({"satuts": "FAILED"})
+    return JsonResponse({"status": "method not allowed"})
+
+
+def get_full_url(request, path):
+    if request.method == "GET":
+
+        try:
+            full_url = Url.objects.get(shortened=path)
+            return JsonResponse({"url": full_url.redirect})
+        except Url.DoesNotExist:
+            return JsonResponse({"status": "not found"})
+
+    return JsonResponse({"status": "method not allowed"})
