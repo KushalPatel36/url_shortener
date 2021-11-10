@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shorten.apps.ShortenConfig',
-    "corsheaders"
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -69,6 +69,10 @@ TEMPLATES = [
         },
     },
 ]
+
+
+CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
 
 WSGI_APPLICATION = 'url_shortener.wsgi.application'
 
