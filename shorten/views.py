@@ -12,9 +12,10 @@ from django.utils.crypto import get_random_string
 from .models import Url
 # Create your views here.
 
+
 def home(req):
     if req.method == 'POST':
-        #print(request.POST)
+        # print(request.POST)
         form = SubmitUrl(req.POST)
         context = {
             "title": "Submit URL",
@@ -22,28 +23,23 @@ def home(req):
         }
         print(context)
         if form.is_valid():
-            current_url=form.cleaned_data.get('url')
+            current_url = form.cleaned_data.get('url')
             shortened = Url.shortened(url=current_url)
             redirect = Url.redirect(url=current_url)
-            context={
-                'title':'URL Shortened!',
-                'redirect':redirect,
-                'shortened':shortened
+            context = {
+                'title': 'URL Shortened!',
+                'redirect': redirect,
+                'shortened': shortened
             }
 
-            return render(req, 'home.html',context)
+            return render(req, 'home.html', context)
     else:
-        form=SubmitUrl()
-        context={
-            "title":"Submit URL",
+        form = SubmitUrl()
+        context = {
+            "title": "Submit URL",
             "form": form
         }
-        return render(req, 'shorten/home.html',context)
-
-
-
-
-
+        return render(req, 'shorten/home.html', context)
 
 
 def generate_random_id():
@@ -55,6 +51,8 @@ def short(request):
     if request.method == 'POST':
 
         body_unicode = request.body.decode('utf-8')
+
+        print(body_unicode)
         body = json.loads(body_unicode)
         url = body['url']
 
@@ -86,7 +84,7 @@ def get_full_url(request, path):
     if request.method == "GET":
 
         try:
-            
+
             full_url = Url.objects.get(shortened=path)
             print(full_url)
             return JsonResponse({"url": full_url.redirect})
