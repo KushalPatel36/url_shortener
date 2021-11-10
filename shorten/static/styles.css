@@ -1,0 +1,10 @@
+.myNewButton {
+    background-color: #05d305;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 5px;
+}
